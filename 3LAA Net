@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3LAA Net - الرئيسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #f5f5f5;
+            --dark: #2c3e50;
+            --text: #333;
+            --white: #fff;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* شريط التنقل العلوي */
+        .navbar {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        /* الشعار الإسلامي المتحرك */
+        .prayer-banner {
+            padding: 0.3rem 0;
+            overflow: hidden;
+            position: relative;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            width: 100%;
+            text-align: center;
+            color: red;
+            font-weight: bold;
+        }
+        
+        .prayer-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: moveBanner 15s linear infinite;
+        }
+        
+        @keyframes moveBanner {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 1rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* المحتوى الرئيسي */
+        .main-content {
+            padding: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* قسم تسجيل الدخول المحسن */
+        .auth-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .auth-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-align: center;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        
+        .remember-me input {
+            margin-left: 0.5rem;
+        }
+        
+        /* رسائل التنبيه */
+        .alert {
+            padding: 0.8rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert i {
+            margin-left: 0.5rem;
+        }
+        
+        /* نقاط البيع */
+        .sales-points {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .sales-points h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .sales-points ul {
+            list-style-type: none;
+        }
+        
+        .sales-points li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sales-points li:last-child {
+            border-bottom: none;
+        }
+        
+        .sales-points i {
+            color: var(--secondary);
+            margin-left: 0.5rem;
+        }
+        
+        /* قسم الخدمات */
+        .services-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .services-section h2 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .service-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* قسم الأسعار */
+        .pricing-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-section h2 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-list {
+            list-style: none;
+        }
+        
+        .pricing-list li {
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .pricing-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* قسم الدعم */
+        .contact-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            margin-bottom: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .contact-info i {
+            color: var(--secondary);
+            margin-left: 0.5rem;
+        }
+        
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0.8rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+                margin-top: 0.5rem;
+            }
+            
+            .nav-links li {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <a href="#" class="logo">3LAA Net</a>
+        <div class="prayer-banner">
+            <span class="prayer-text">"لا إله إلا أنت سبحانك إني كنت من الظالمين"</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">الخدمات</a></li>
+            <li><a href="#pricing">الأسعار</a></li>
+            <li><a href="#contact">الدعم</a></li>
+            <li><a href="#sales-points">نقاط البيع</a></li>
+        </ul>
+    </nav>
+    
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        <!-- قسم تسجيل الدخول -->
+        <section class="auth-section">
+            <h2 class="auth-title">تسجيل الدخول</h2>
+            
+            <div id="login-alert" class="alert" style="display:none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="alert-message"></span>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" class="form-control" placeholder="اسم المستخدم" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" class="form-control" placeholder="كلمة المرور" required>
+                </div>
+                
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">تذكرني</label>
+                </div>
+                
+                <button type="submit" id="login-btn" class="btn btn-primary">دخول</button>
+            </form>
+        </section>
+        
+        <!-- قسم نقاط البيع -->
+        <section id="sales-points" class="sales-points">
+            <h3>نقاط البيع لدينا</h3>
+            <ul>
+                <li><i class="fas fa-map-marker-alt"></i> ماركت ابو الخير - مقابل برج مكة</li>
+                <li><i class="fas fa-map-marker-alt"></i> كفى شوب ومساحة عمل وانترنت سكر - دوار ابو مازن مقابل مسجد الامين</li>
+                <li><i class="fas fa-map-marker-alt"></i> محمد عبدلله العبسي بجانب كفى شوب سكر - دوار ابو مازن</li>
+            </ul>
+        </section>
+        
+        <!-- قسم الخدمات -->
+        <section id="services" class="services-section">
+            <h2>خدماتنا</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 class="service-title">إنترنت سريع</h3>
+                    <p>اتصال إنترنت فائق السرعة يلبي جميع احتياجاتك</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="service-title">دعم فني</h3>
+                    <p>دعم فني متاح على مدار الساعة لخدمتك</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="service-title">عروض خاصة</h3>
+                    <p>باقات وعروض خاصة بأسعار مميزة</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الأسعار -->
+        <section id="pricing" class="pricing-section">
+            <h2>أسعار البطاقات</h2>
+            <ul class="pricing-list">
+                <li>
+                    <span>3 ساعات</span>
+                    <span>1 شيكل</span>
+                </li>
+                <li>
+                    <span>6 ساعات</span>
+                    <span>2 شيكل</span>
+                </li>
+                <li>
+                    <span>بطاقات خاصة</span>
+                    <span>أسعار مناسبة</span>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- قسم الدعم -->
+        <section id="contact" class="contact-section">
+            <h2>الدعم الفني</h2>
+            <p style="margin-bottom:1rem;">للتواصل مع الدعم الفني:</p>
+            <p class="contact-info">
+                <i class="fas fa-phone"></i>
+                0593292018
+            </p>
+            <p class="contact-info">
+                <i class="fas fa-envelope"></i>
+                Laasyd553@gmail.com
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // قاعدة بيانات وهمية للمستخدمين
+        const usersDatabase = [
+            { id: 1, username: "admin", password: "7c4a8d09ca3762af61e59520943dc26494f8941b", isAdmin: true, active: true },
+            { id: 2, username: "user1", password: "7c4a8d09ca3762af61e59520943dc26494f8941b", isAdmin: false, active: true },
+            { id: 3, username: "user2", password: "7c4a8d09ca3762af61e59520943dc26494f8941b", isAdmin: false, active: false }
+        ];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // دالة تسجيل الدخول
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('remember').checked;
+                const alertDiv = document.getElementById('login-alert');
+                const alertMessage = document.getElementById('alert-message');
+                
+                if (!username || !password) {
+                    showAlert('الرجاء إدخال اسم المستخدم وكلمة المرور', 'danger');
+                    return;
+                }
+                
+                const user = usersDatabase.find(u => u.username === username);
+                
+                if (!user) {
+                    showAlert('اسم المستخدم غير صحيح', 'danger');
+                    return;
+                }
+                
+                const sha1 = require('js-sha1');
+                const hashedPassword = sha1(password);
+                
+                if (user.password !== hashedPassword) {
+                    showAlert('كلمة المرور غير صحيحة', 'danger');
+                    return;
+                }
+                
+                if (!user.active) {
+                    showAlert('حسابك غير مفعل، يرجى التواصل مع الدعم الفني', 'danger');
+                    return;
+                }
+                
+                if (rememberMe) {
+                    localStorage.setItem('rememberedUsername', username);
+                } else {
+                    localStorage.removeItem('rememberedUsername');
+                }
+                
+                showAlert('تم تسجيل الدخول بنجاح!', 'success');
+                
+                if (user.isAdmin) {
+                    setTimeout(() => {
+                        window.location.href = "dashboard.html";
+                    }, 1500);
+                } else {
+                    setTimeout(() => {
+                        window.location.href = "services.html";
+                    }, 1500);
+                }
+            });
+            
+            // جعل التنقل سلساً
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // عرض رسائل التنبيه
+            function showAlert(message, type) {
+                const alertDiv = document.getElementById('login-alert');
+                const alertMessage = document.getElementById('alert-message');
+                
+                alertDiv.className = 'alert';
+                alertDiv.classList.add(`alert-${type}`);
+                alertMessage.textContent = message;
+                alertDiv.style.display = 'flex';
+                
+                setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.min.js"></script>
+</body>
+</html>
